@@ -1,0 +1,13 @@
+<span><%= link "Back", to: Routes.course_section_path(@conn, :index) %></span>
+
+<h1>Edit Course section</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.course_section_path(@conn, :update, @course_section)) %>
+
+
+<div>
+  <%= link "Add Text Block", to: '/' %>
+</div>
+
+
+

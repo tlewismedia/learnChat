@@ -1,0 +1,18 @@
+<h1>Show Text block</h1>
+
+<ul>
+
+  <li>
+    <strong>Heading:</strong>
+    <%= @text_block.heading %>
+  </li>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @text_block.body %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.text_block_path(@conn, :edit, @text_block) %></span>
+<span><%= link "Back", to: Routes.text_block_path(@conn, :index) %></span>

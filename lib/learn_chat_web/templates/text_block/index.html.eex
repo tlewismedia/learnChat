@@ -1,0 +1,28 @@
+<h1>Listing Text blocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Heading</th>
+      <th>Body</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for text_block <- @text_blocks do %>
+    <tr>
+      <td><%= text_block.heading %></td>
+      <td><%= text_block.body %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.text_block_path(@conn, :show, text_block) %></span>
+        <span><%= link "Edit", to: Routes.text_block_path(@conn, :edit, text_block) %></span>
+        <span><%= link "Delete", to: Routes.text_block_path(@conn, :delete, text_block), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Text block", to: Routes.text_block_path(@conn, :new) %></span>

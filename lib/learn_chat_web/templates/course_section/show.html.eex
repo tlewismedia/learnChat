@@ -1,0 +1,75 @@
+<h1>Show Course section</h1>
+
+<ul>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @course_section.type %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @course_section.title %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.course_section_path(@conn, :edit, @course_section) %></span>
+<span><%= link "Back", to: Routes.course_section_path(@conn, :index) %></span>
+
+
+<hr>
+<h2>Content Blocks:</h2>
+
+
+<%= for block <- @course_section.text_blocks do %>
+<div class="content_block">
+  <h3>
+    <%= block.heading %>
+  </h3>
+
+  <div>
+    <%= block.body %>
+  </div>
+</div>
+<% end %>
+
+<style>
+  .content_block{
+    border: 1px dotted gray;
+    margin: 20px;
+    padding: 20px;
+  }
+</style>
+
+<hr>
+
+
+
+
+<h2>
+
+ADD NEW BLOCKS:
+</h2>
+<%= form_for @content_block, Routes.course_section_text_block_path(@conn, :create, @course_section), fn f -> %>
+  <%= if @content_block.action do %>
+    <div class="alert alert-danger">
+      Unfortunately, there are errors in your
+      submission. Please correct them below.
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :heading %>
+    <%= text_input f, :heading %>
+    <%= error_tag f, :heading %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :body %>
+    <%= text_input f, :body %>
+    <%= error_tag f, :body %>
+  </div>
+
+  <%= submit "Submit", class: "btn btn-primary"%>
+<% end %>
